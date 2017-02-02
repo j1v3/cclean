@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
+c_clean:
+    resource: "@CCleanBundle/Controller/"
     type:     annotation
+    prefix:   /

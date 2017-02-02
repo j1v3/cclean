@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace CCleanBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class CCleanBundle extends Bundle
 {
 }
