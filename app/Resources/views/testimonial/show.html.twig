@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Testimonial</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ testimonial.id }}</td>
+            </tr>
+            <tr>
+                <th>Clientid</th>
+                <td>{{ testimonial.clientId }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ testimonial.comment }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ testimonial.note }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if testimonial.createdAt %}{{ testimonial.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if testimonial.updatedAt %}{{ testimonial.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Validatedat</th>
+                <td>{% if testimonial.validatedAt %}{{ testimonial.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Deletedat</th>
+                <td>{% if testimonial.deletedAt %}{{ testimonial.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('testimonial_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('testimonial_edit', { 'id': testimonial.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

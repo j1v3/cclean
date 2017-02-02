@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Average</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ average.id }}</td>
+            </tr>
+            <tr>
+                <th>Score</th>
+                <td>{{ average.score }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if average.createdAt %}{{ average.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if average.updatedAt %}{{ average.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Validatedat</th>
+                <td>{% if average.validatedAt %}{{ average.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Deletedat</th>
+                <td>{% if average.deletedAt %}{{ average.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('average_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('average_edit', { 'id': average.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

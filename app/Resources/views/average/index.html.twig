@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Averages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Score</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Validatedat</th>
+                <th>Deletedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for average in averages %}
+            <tr>
+                <td><a href="{{ path('average_show', { 'id': average.id }) }}">{{ average.id }}</a></td>
+                <td>{{ average.score }}</td>
+                <td>{% if average.createdAt %}{{ average.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if average.updatedAt %}{{ average.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if average.validatedAt %}{{ average.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if average.deletedAt %}{{ average.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('average_show', { 'id': average.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('average_edit', { 'id': average.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('average_new') }}">Create a new average</a>
+        </li>
+    </ul>
+{% endblock %}

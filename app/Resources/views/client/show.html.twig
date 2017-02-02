@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Client</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ client.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ client.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ client.surname }}</td>
+            </tr>
+            <tr>
+                <th>Adress1</th>
+                <td>{{ client.adress1 }}</td>
+            </tr>
+            <tr>
+                <th>Zip1</th>
+                <td>{{ client.zip1 }}</td>
+            </tr>
+            <tr>
+                <th>City1</th>
+                <td>{{ client.city1 }}</td>
+            </tr>
+            <tr>
+                <th>Adress2</th>
+                <td>{{ client.adress2 }}</td>
+            </tr>
+            <tr>
+                <th>Zip2</th>
+                <td>{{ client.zip2 }}</td>
+            </tr>
+            <tr>
+                <th>City2</th>
+                <td>{{ client.city2 }}</td>
+            </tr>
+            <tr>
+                <th>Tel1</th>
+                <td>{{ client.tel1 }}</td>
+            </tr>
+            <tr>
+                <th>Tel2</th>
+                <td>{{ client.tel2 }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ client.fax }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ client.mail }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if client.createdAt %}{{ client.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if client.updatedAt %}{{ client.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Validatedat</th>
+                <td>{% if client.validatedAt %}{{ client.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Deletedat</th>
+                <td>{% if client.deletedAt %}{{ client.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('client_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('client_edit', { 'id': client.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

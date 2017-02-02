@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Testimonials list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Clientid</th>
+                <th>Comment</th>
+                <th>Note</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Validatedat</th>
+                <th>Deletedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testimonial in testimonials %}
+            <tr>
+                <td><a href="{{ path('testimonial_show', { 'id': testimonial.id }) }}">{{ testimonial.id }}</a></td>
+                <td>{{ testimonial.clientId }}</td>
+                <td>{{ testimonial.comment }}</td>
+                <td>{{ testimonial.note }}</td>
+                <td>{% if testimonial.createdAt %}{{ testimonial.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if testimonial.updatedAt %}{{ testimonial.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if testimonial.validatedAt %}{{ testimonial.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if testimonial.deletedAt %}{{ testimonial.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('testimonial_show', { 'id': testimonial.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('testimonial_edit', { 'id': testimonial.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('testimonial_new') }}">Create a new testimonial</a>
+        </li>
+    </ul>
+{% endblock %}

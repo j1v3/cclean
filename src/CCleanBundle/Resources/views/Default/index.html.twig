@@ -1,1 +1,192 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+            <div class="container">
+
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <!--<ol class="carousel-indicators">-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="3"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="4"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="5"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="6"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="7"></li>-->
+                <!--<li data-target="#carousel-example-generic" data-slide-to="8"></li>-->
+                <!--</ol>-->
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" style="margin-top: 50px">
+                    <div class="item active">
+                        <img src="{{ asset('bundles/cclean/images/cclean.jpg') }}" alt="CClean Netoyage">
+                        <div class="">
+                            <!--<h2>Vitrerie</h2>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/vitrerie.jpg') }}" alt="Vitrerie">
+                        <div class="carousel-caption">
+                            <h2>Vitrerie</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/menage.jpg') }}" alt="Ménage">
+                        <div class="carousel-caption">
+                            <h2>M&eacute;nage</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/entretien.jpg') }}" alt="Entretien bureaux">
+                        <div class="carousel-caption">
+                            <h2>Entretien bureaux</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/entretien2.jpg') }}" alt="Entretien copropriété">
+                        <div class="carousel-caption">
+                            <h2>Entretien copropri&eacute;t&eacute;</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/debaras.jpg') }}" alt="Débaras cave, grenier...">
+                        <div class="carousel-caption">
+                            <h2>D&eacute;baras cave, grenier...</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/hautepression.jpg') }}" alt="Nettoyage haute pression">
+                        <div class="carousel-caption">
+                            <h2>Nettoyage haute pression</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/moquette.jpg') }}" alt="Nettoyage tapis, moquettes">
+                        <div class="carousel-caption">
+                            <h2>Nettoyage tapis, moquettes</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/toiture.jpg')}}" alt="Nettoyage toitures, facades">
+                        <div class="carousel-caption">
+                            <h2>Nettoyage toitures, facades</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('bundles/cclean/images/tombe.jpg') }}" alt="Nettoyage pierres tombales">
+                        <div class="carousel-caption">
+                            <h2>Nettoyage pierres tombales</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+
+        </div>
+
+    <div class="container" style="padding-top:30px">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-default">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-primary">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-info">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-success">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-warning">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div id="tb-testimonial" class="testimonial testimonial-danger">
+                    <div class="testimonial-section">
+                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
