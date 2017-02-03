@@ -37,6 +37,7 @@ class Contact
      *
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
      */
+
     private $surname;
 
     /**
@@ -45,6 +46,13 @@ class Contact
      * @ORM\Column(name="mail", type="string", length=255, nullable=false)
      */
     private $mail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=255, nullable=true)
+     */
+    private $tel;
 
     /**
      * @var string
@@ -147,7 +155,7 @@ class Contact
      */
     public function setMail($mail)
     {
-        $this->body = $mail;
+        $this->mail = $mail;
 
         return $this;
     }
@@ -160,6 +168,29 @@ class Contact
     public function getMail()
     {
         return $this->mail;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     * @return Contact
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 
     /**

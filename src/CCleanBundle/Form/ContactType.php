@@ -43,6 +43,14 @@ class ContactType extends AbstractType
                 'placeholder' => 'Entrez votre email'
             )
         ));
+        $builder->add('tel', 'text', array(
+            'label' => 'Téléphone',
+            'required' => false,
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Entrez votre numéro de téléphone'
+            )
+        ));
         $builder->add('subject', 'text', array(
             'label' => 'Sujet',
             'attr' => array(

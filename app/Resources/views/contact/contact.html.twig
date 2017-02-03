@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div style="width: 400px; height: 80px; margin: auto; top: 200px; left: 0; right: 0; position: absolute; border: thin solid #ff0; background: #ffe; color: #2594b2; font-weight: bold; z-index: 9999; padding: 10px;">
+            {{ flashMessage }}
+            <div style="text-align: right">
+                <a href="{{ path('home') }}">Retour</a>
+            </div>
+        </div>
+    {% endfor %}
     <div style="padding-top:30px; width: 100%; text-align: center; margin-bottom: -3%">
         <div class="row">
             <div class="col-sm-12 testimonial-title">
-                Rejoignez sur
+                Contactez-nous sur
                 <br />
                 <a href="https://www.facebook.com/G%C3%A9rant-Cclean-Nettoyage-804562136276038" target="_blank">
                     <img src="{{ asset('bundles/cclean/images/facebook.png') }}" />
@@ -14,14 +22,6 @@
             </div>
         </div>
     </div>
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        <div class="flash-notice main-center" style="width: 410px; border: thin solid #ff0; background: #ffe; position: absolute; z-index: 9999; padding: 10px; float: left; margin-top: 10%">
-            {{ flashMessage }}
-            <div style="text-align: right">
-                <a href="{{ path('home') }}">Retour</a>
-            </div>
-        </div>
-    {% endfor %}
     <div class="container">
         <div class="row main cols-sm-12">
             <div class="main-login main-center">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.surname) }}</label>
+                        <label for="surname" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.surname) }}</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.mail) }}</label>
+                        <label for="mail" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.mail) }}</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -58,9 +58,17 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="username" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.subject) }}</label>
+                        <label for="tel" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.tel) }}</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                {{ form_widget(form.tel) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.subject) }}</label>
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
