@@ -42,7 +42,7 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="email", length=255, nullable=false)
+     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
      */
     private $mail;
 
