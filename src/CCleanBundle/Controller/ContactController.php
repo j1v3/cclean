@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ContactController extends Controller
 {
     /**
-     * @Route("/", name="contact")
+     * @Route("/contact", name="contact")
      */
     public function contactAction(Request $request)
     {
