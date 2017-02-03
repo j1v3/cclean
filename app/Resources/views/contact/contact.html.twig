@@ -1,15 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div style="padding-top:30px; width: 100%; text-align: center; margin-bottom: -3%">
+        <div class="row">
+            <div class="col-sm-12 testimonial-title">
+                Rejoignez sur
+                <br />
+                <a href="https://www.facebook.com/G%C3%A9rant-Cclean-Nettoyage-804562136276038" target="_blank">
+                    <img src="{{ asset('bundles/cclean/images/facebook.png') }}" />
+                </a>
+                <br/>
+                ou envoyez-nous un message...
+            </div>
+        </div>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice main-center" style="width: 410px; border: thin solid #ff0; background: #ffe; position: absolute; z-index: 9999; padding: 10px; float: left; margin-top: 10%">
+            {{ flashMessage }}
+            <div style="text-align: right">
+                <a href="{{ path('home') }}">Retour</a>
+            </div>
+        </div>
+    {% endfor %}
     <div class="container">
         <div class="row main cols-sm-12">
             <div class="main-login main-center">
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div class="flash-notice">
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-                <h5>Envoyez-nous un message ou une demande de devis :</h5>
                 <form action="{{ path('contact') }}" method="post" {{ form_enctype(form) }}>
 
                     {{ form_errors(form) }}

@@ -1,0 +1,4 @@
+.flash.notice, .flash.info {
+    border: thin solid #ff0;
+    background: #ffe;
+}

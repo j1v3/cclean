@@ -33,7 +33,7 @@ class ContactController extends Controller
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
+//var_dump($contact);die;
                 $mailFrom = $this->container->getParameter('mailer_user');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Demande de contact depuis www.cclean-nettoyage.fr')
@@ -49,7 +49,7 @@ class ContactController extends Controller
 
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
-                return $this->redirect($this->generateUrl('home'));
+                return $this->redirect($this->generateUrl('contact'));
             }
         }
 
