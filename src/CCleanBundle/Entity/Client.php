@@ -117,6 +117,12 @@ class Client
      */
     private $mail;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    private $password;
 
     /**
      * Get id
@@ -425,5 +431,28 @@ class Client
     public function getMail()
     {
         return $this->mail;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Client
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

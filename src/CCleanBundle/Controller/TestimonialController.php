@@ -5,7 +5,8 @@ namespace CCleanBundle\Controller;
 use CCleanBundle\Entity\Testimonial;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Testimonial controller.
@@ -17,7 +18,7 @@ class TestimonialController extends Controller
     /**
      * Lists all testimonial entities.
      *
-     * @Route("/testimonial", name="testimonial_index")
+     * @Route("/", name="testimonial_index")
      * @Method("GET")
      */
     public function indexAction()

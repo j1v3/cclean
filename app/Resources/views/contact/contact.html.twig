@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row main cols-sm-12">
+            <div class="main-login main-center">
+                <h5>Envoyez-nous un message ou une demande de devis :</h5>
+                <form action="{{ path('contact') }}" method="post" {{ form_enctype(form) }}>
+
+                    {{ form_errors(form) }}
+                    {{ form_widget(form._token) }}
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Nom</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name"  placeholder="Entrez votre nom"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Prénom</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="surname" id="surname"  placeholder="Entrez votre prénom"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email"  placeholder="Entrez votre email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Sujet</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="subject" id="subject"  placeholder="Demande de devis"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body" class="cols-sm-2 control-label">Message</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <textarea rows="20" class="form-control" name="body" id="body" placeholder="Votre message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <input type="submit" id="button" class="btn btn-primary btn-lg btn-block submit-button">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

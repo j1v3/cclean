@@ -5,7 +5,8 @@ namespace CCleanBundle\Controller;
 use CCleanBundle\Entity\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Client controller.
@@ -22,19 +23,19 @@ class ClientController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $clients = $em->getRepository('CCleanBundle:Client')->findAll();
-
-        return $this->render('client/index.html.twig', array(
-            'clients' => $clients,
-        ));
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $clients = $em->getRepository('CCleanBundle:Client')->findAll();
+//
+//        return $this->render('client/index.html.twig', array(
+//            'clients' => $clients,
+//        ));
     }
 
     /**
      * Creates a new client entity.
      *
-     * @Route("/new", name="client_new")
+     * @Route("/new", name="register")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)

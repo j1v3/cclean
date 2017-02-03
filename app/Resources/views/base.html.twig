@@ -12,16 +12,16 @@
         <meta name="copyright" content="http://www.cclean-nettoyage.fr" />
         <meta http-equiv="pragma" content="no-cache" />
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('bundles/cclean/images/favicon/apple-icon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('bundles/cclean/images/favicon//apple-icon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('bundles/cclean/images/favicon//apple-icon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('bundles/cclean/images/favicon//apple-icon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('bundles/cclean/images/favicon//apple-icon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('bundles/cclean/images/favicon//apple-icon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('bundles/cclean/images/favicon//apple-icon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('bundles/cclean/images/favicon//apple-icon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('bundles/cclean/images/favicon//apple-icon-180x180.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('bundles/cclean/images/favicon//android-icon-192x192.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('bundles/cclean/images/favicon//favicon-32x32.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('bundles/cclean/images/favicon/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('bundles/cclean/images/favicon/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('bundles/cclean/images/favicon/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('bundles/cclean/images/favicon/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('bundles/cclean/images/favicon/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('bundles/cclean/images/favicon/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('bundles/cclean/images/favicon/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('bundles/cclean/images/favicon/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('bundles/cclean/images/favicon/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('bundles/cclean/images/favicon/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('bundles/cclean/images/favicon-96x96.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('bundles/cclean/images/favicon-16x16.png') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('bundles/cclean/images/favicon/favicon.ico') }}" />
@@ -33,6 +33,7 @@
             <link rel="stylesheet" href="http://bootsnipp.com/dist/bootsnipp.min.css?ver=7d23ff901039aef6293954d33d23c066">
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cclean/css/slider.css') }}" media="screen" />
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cclean/css/testimonial.css') }}" media="screen" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cclean/css/register.css') }}" media="screen" />
         {% endblock %}
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -54,7 +55,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div  style="display: inline-block; z-index: -1" >
-                        <a class="" href=""><img src="{{ asset('bundles/cclean/images/entete.jpg') }}" alt="CClean Nettoyage" /></a>
+                        <a class="" href="{{ path('home') }}"><img src="{{ asset('bundles/cclean/images/entete.jpg') }}" alt="CClean Nettoyage" /></a>
                     </div>
                 </div>
                 <script src="{{ asset('bundles/cclean/js/BSAcpc.js') }}" async></script>
@@ -69,27 +70,27 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="1">Vitrerie
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="1">Vitrerie
                                         <span class="pull-right glyphicon  glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="2">M&eacute;nage
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="2">M&eacute;nage
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="3">Entretien bureaux
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="3">Entretien bureaux
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="4">Entretien copropri&eacute;t&eacute;
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="4">Entretien copropri&eacute;t&eacute;
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="5">D&eacute;baras cave, grenier ...
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="5">D&eacute;barras cave, grenier ...
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
@@ -103,22 +104,22 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="6">Haute pression
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="6">Haute pression
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="7">Tapis, moquettes
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="7">Tapis, moquettes
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="8">Toitures, facades
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="8">Toitures, facades
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="9">Pierres tombales
+                                    <a href="{{ path('home') }}" style="font-size: 15px" data-target="#carousel-example-generic" data-slide-to="9">Pierres tombales
                                         <span class="pull-right glyphicon glyphicon-share-alt"></span>
                                     </a>
                                 </li>
@@ -126,11 +127,11 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="testimonial/new" class="animate">Donnez votre avis</a>
+                            <a href="{{ path('register') }}" class="animate">Donnez votre avis</a>
                         </li>
 
                         <li class="dropdown">
-                            <a href="contact" class="animate">Contactez-nous</a>
+                            <a href="{{ path('contact') }}" class="animate">Contactez-nous</a>
                         </li>
 
                     </ul>
