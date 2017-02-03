@@ -42,9 +42,9 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(name="text", type="string", length=255, nullable=false)
      */
-    private $email;
+    private $mail;
 
     /**
      * @var string
@@ -140,26 +140,26 @@ class Contact
     }
 
     /**
-     * Set email
+     * Set mail
      *
-     * @param string $email
+     * @param string $mail
      * @return Contact
      */
-    public function setEmail($email)
+    public function setMail($mail)
     {
-        $this->body = $email;
+        $this->body = $mail;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get mail
      *
      * @return string
      */
-    public function getEmail()
+    public function getMail()
     {
-        return $this->email;
+        return $this->mail;
     }
 
     /**

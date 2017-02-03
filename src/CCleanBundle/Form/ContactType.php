@@ -14,12 +14,50 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ContactType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
-        $builder->add('email', 'email');
-        $builder->add('subject');
-        $builder->add('body', 'textarea');
+        $builder->add('name', 'text', array(
+            'label' => 'Nom',
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Entrez votre nom'
+            )
+
+        ));
+        $builder->add('surname', 'text', array(
+            'label' => 'Prénom',
+            'required' => false,
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Entrez votre prénom'
+            )
+        ));
+        $builder->add('mail', 'email', array(
+            'label' => 'Email',
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Entrez votre email'
+            )
+        ));
+        $builder->add('subject', 'text', array(
+            'label' => 'Sujet',
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Demande de devis ?'
+            )
+        ));
+        $builder->add('body', 'textarea', array(
+            'label' => 'Message',
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Votre message',
+                'rows' => '20'
+            )
+        ));
     }
 
     public function getName()

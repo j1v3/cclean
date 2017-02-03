@@ -34,11 +34,13 @@ class ContactController extends Controller
 
             if ($form->isValid()) {
 
+                var_dump($contact);die;
+                $mailFrom = $this->container->getParameter('mailer_user');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Demande de contact depuis www.cclean-nettoyage.fr')
-                    ->setFrom('enquiries@symblog.co.uk')
+                    ->setFrom($mailFrom)
 //                    ->setTo('cclean.bectard@gmail.com')
-                    ->setTo('jeremy.vincent60@gmail.com')
+                    ->setTo($mailFrom)
                     ->setBody($this->renderView('contact/contactEmail.txt.twig',
                         array('contact' => $contact)));
 

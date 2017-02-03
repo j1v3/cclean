@@ -1,6 +1,6 @@
-A {{ "now" | date("Y-m-d H:i") }}, vous avez reçu un message de {{ contact.name }} {{ contact.surname }}.
+Le {{ "now" | date("d/m/Y") }} à {{ "now" | date("H:i") }}, vous avez reçu un message de {{ contact.name }} {{ contact.surname }}.
 
-Repondre à: {{ contact.email }}
+Repondre à: {{ contact.mail }}
 Sujet: {{ contact.subject }}
 Message:
 {{ contact.body }}
