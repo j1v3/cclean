@@ -11,6 +11,7 @@ use CCleanBundle\Entity\Contact;
 use CCleanBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Contact controller.
@@ -21,20 +22,18 @@ class ContactController extends Controller
     /**
      * @Route("/", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
         $contact = new Contact();
 
         $form = $this->createForm(new ContactType(), $contact);
 
-        $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
 
-            $form->bind($request);
+            $form->handleRequest($request);
 
-            if ($form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-                var_dump($contact);die;
                 $mailFrom = $this->container->getParameter('mailer_user');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Demande de contact depuis www.cclean-nettoyage.fr')
