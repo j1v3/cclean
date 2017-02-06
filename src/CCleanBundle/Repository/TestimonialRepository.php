@@ -22,7 +22,7 @@ class TestimonialRepository extends EntityRepository
             ->select('t.comment', 't.note', 'c.name', 'c.surname', 'c.username', 'c.company')
             ->where('t.isActive = :true')
             ->setParameter('true', 1)
-//            ->groupBy('t.clientId')
+            ->groupBy('c.username')
             ->getQuery()
             ->getResult();
     }

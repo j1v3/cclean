@@ -156,10 +156,6 @@
         {#<img style="position: absolute; z-index: 15;" src="{{ asset('bundles/cclean/images/average.png') }}">#}
     {#</div>#}
         {% block body %}{% endblock %}
-        {% block testimonial %}
-            {{ render(controller('CCleanBundle:Testimonial:index')) }}
-        {% endblock %}
-
         {% block footer %}{% endblock %}
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

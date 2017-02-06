@@ -4,7 +4,7 @@
             Consultez les avis de nos clients...
         </div>
 
-        {%  for testimonial in testimonials %}
+        {% for testimonial in testimonials %}
             {% if testimonial.note == 0 %}
                 {% set color = 'testimonial-danger' %}
             {% elseif testimonial.note == 1 %}

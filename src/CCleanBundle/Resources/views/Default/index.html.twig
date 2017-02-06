@@ -100,4 +100,7 @@
             </div>
 
         </div>
+    {% block testimonial %}
+        {{ render(controller('CCleanBundle:Testimonial:index')) }}
+    {% endblock %}
 {% endblock %}
