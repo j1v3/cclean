@@ -151,6 +151,10 @@
             </div>
         </nav>
     </section>
+    {#<div id="average_bar" class="avWidgetImage" style="position: fixed; z-index: 5; float: left; margin-top: 80%; margin-left: 10%">#}
+        {#<img style="position: absolute; z-index: 10;" src="{{ asset('bundles/cclean/images/blue_bar.jpg') }}" width="80px" height="40px">#}
+        {#<img style="position: absolute; z-index: 15;" src="{{ asset('bundles/cclean/images/average.png') }}">#}
+    {#</div>#}
         {% block body %}{% endblock %}
         {% block testimonial %}
             {{ render(controller('CCleanBundle:Testimonial:index')) }}

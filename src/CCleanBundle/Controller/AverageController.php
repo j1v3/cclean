@@ -37,24 +37,27 @@ class AverageController extends Controller
      * @Route("/new", name="average_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         $average = new Average();
-        $form = $this->createForm('CCleanBundle\Form\AverageType', $average);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($average);
-            $em->flush($average);
+        $em = $this->getDoctrine()->getManager();
+        $nb = count($em->getRepository('CCleanBundle:Testimonial')->findBy(array('isActive' => 1)));
+        $notes = $em->getRepository('CCleanBundle:Testimonial')->findTotalNoteByActive();
 
-            return $this->redirectToRoute('average_show', array('id' => $average->getId()));
-        }
+        $total = 0;
+            foreach ($notes as $key => $item) {
+                $total += $item['note'];
+                var_dump($item);
+            }
 
-        return $this->render('average/new.html.twig', array(
-            'average' => $average,
-            'form' => $form->createView(),
-        ));
+        $result = round( $total/$nb, 1, PHP_ROUND_HALF_UP);
+        $average->setScore($result);
+        $em->persist($average);
+        $em->flush($average);
+
+        return $this->redirectToRoute('average_show', array('id' => $average->getId()));
+
     }
 
     /**
