@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+            <body>
+            <div>
+                Le {{ "now" | date("d/m/Y") }} à {{ "now" | date("H:i") }}, {{ client.surname }} {{ client.name }} a proposé un nouvel avis.
+            </div>
+            <div>
+                Son avis:
+                {{ testimonial.comment }}
+            </div>
+            <div>
+                Sa note:
+                {{ testimonial.note }}
+            </div>
+            <div>
+                Vous pouvez valider cet avis en <a href="http://{{ infos.site }}{{ path('testimonial_validate', { 'id': testimonial.id }) }}">cliquant ici</a>,
+            </div>
+            <div>
+                contacter la personne par mail: {{ client.mail }}
+                {% if client.tel1 %}
+                ou par téléphone: {{ client.tel1 }}
+                {% endif %}
+                ou ignorer ce message.
+            </div>
+            <div>
+            A bientôt !
+            </div>
+        </body>
+</html>

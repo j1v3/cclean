@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Testimonial controller.
@@ -25,7 +26,7 @@ class TestimonialController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $testimonials = $em->getRepository('CCleanBundle:Testimonial')->findAll();
+        $testimonials = $em->getRepository('CCleanBundle:Testimonial')->findTestimonialByActive();
 
         return $this->render('testimonial/index.html.twig', array(
             'testimonials' => $testimonials,
@@ -37,6 +38,7 @@ class TestimonialController extends Controller
      *
      * @Route("/new", name="testimonial_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {
@@ -45,7 +47,11 @@ class TestimonialController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $clientId = $this->container->get('security.context')->getToken()->getUser()->getId();
+
             $em = $this->getDoctrine()->getManager();
+            $testimonial->setClientId($clientId);
             $em->persist($testimonial);
             $em->flush($testimonial);
 
@@ -59,9 +65,66 @@ class TestimonialController extends Controller
     }
 
     /**
+     * @Route("/{id}/publish", name="testimonial_publish")
+     * @param Request $request
+     * @param Testimonial $testimonial
+     * @Security("has_role('ROLE_USER')")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function publishAction(Request $request, Testimonial $testimonial) {
+
+        $client = $this->container->get('security.context')->getToken()->getUser();
+
+        $mailFrom = $this->container->getParameter('mailer_user');
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Vous avez un nouvel avis sur www.cclean-nettoyage.fr')
+            ->setFrom($mailFrom)
+//                    ->setTo('cclean.bectard@gmail.com')
+            ->setTo($mailFrom)
+            ->setBody($this->renderView('testimonial/testimonialEmail.html.twig',
+                array(
+                    'testimonial' => $testimonial,
+                    'client' => $client)),
+                    'text/html')
+        ;
+
+        $this->get('mailer')->send($message);
+
+        $this->get('session')->getFlashBag()->Add('notice', 'Merci pour votre avis, il sera validé par notre webmaster dans les meilleurs délais...');
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * Validate testimonial entity.
+     *
+     * @Route("/{id}/validate", name="testimonial_validate")
+     * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
+     * @param Testimonial $testimonial
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function validateAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $testimonial = $em->getRepository('CCleanBundle:Testimonial')->findBy(array('id' => $id));
+//        echo "<pre>";
+//        var_dump($testimonial[0]->getIsActive());die;
+
+            $testimonial[0]->setIsActive(1);
+            $em->persist($testimonial[0]);
+            $em->flush($testimonial[0]);
+
+        $this->get('session')->getFlashBag()->Add('notice', 'Cet avis est maintenant publié sur le site...');
+
+        return $this->redirectToRoute('testimonial_show', array('id' => $testimonial[0]->getId()));
+    }
+
+    /**
      * Finds and displays a testimonial entity.
      *
      * @Route("/{id}", name="testimonial_show")
+     * @Security("has_role('ROLE_USER')")
      * @Method("GET")
      */
     public function showAction(Testimonial $testimonial)
@@ -78,6 +141,7 @@ class TestimonialController extends Controller
      * Displays a form to edit an existing testimonial entity.
      *
      * @Route("/{id}/edit", name="testimonial_edit")
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Testimonial $testimonial)
@@ -89,10 +153,11 @@ class TestimonialController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('testimonial_edit', array('id' => $testimonial->getId()));
+            return $this->redirectToRoute('testimonial_show', array('id' => $testimonial->getId()));
         }
 
         return $this->render('testimonial/edit.html.twig', array(
+            'id' => $testimonial->getId(),
             'testimonial' => $testimonial,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -103,6 +168,7 @@ class TestimonialController extends Controller
      * Deletes a testimonial entity.
      *
      * @Route("/{id}", name="testimonial_delete")
+     * @Security("has_role('ROLE_USER')")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Testimonial $testimonial)

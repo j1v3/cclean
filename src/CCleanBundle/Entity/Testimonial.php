@@ -27,7 +27,7 @@ class Testimonial
     /**
      * Many Testimonials have One ClientId
      * @ORM\Column(name="client_id", type="integer")
-     * @ORM\ManyToOne(targetEntity="CCleanBundle/Entity/Client")
+     * @ORM\ManyToOne(targetEntity="CCleanBundle/Entity/Client", inversedBy="testimonials")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $clientId;
@@ -46,6 +46,23 @@ class Testimonial
      */
     private $note;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->isActive = false;
+        if (!$this->getId()) {
+            $this->setCreatedAt(new \DateTime());
+        } else {
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
 
     /**
      * Get id
@@ -124,5 +141,28 @@ class Testimonial
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param integer $isActive
+     * @return Testimonial
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return integer
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

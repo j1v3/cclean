@@ -1,4 +1,15 @@
-.flash.notice, .flash.info {
+.flash {
+    width: 400px;
+    height: 80px;
+    margin: auto;
+    top: 200px;
+    left: 0;
+    right: 0;
+    position: absolute;
     border: thin solid #ff0;
     background: #ffe;
+    color: #2594b2;
+    font-weight: bold;
+    z-index: 9999;
+    padding: 10px;
 }

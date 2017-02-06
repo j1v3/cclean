@@ -1,56 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Testimonial</h1>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash">
+            {{ flashMessage }}
+            <div style="text-align: right">
+                <a href="{{ path('home') }}">Retour</a>
+            </div>
+        </div>
+    {% endfor %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ testimonial.id }}</td>
-            </tr>
-            <tr>
-                <th>Clientid</th>
-                <td>{{ testimonial.clientId }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ testimonial.comment }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ testimonial.note }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if testimonial.createdAt %}{{ testimonial.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if testimonial.updatedAt %}{{ testimonial.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Validatedat</th>
-                <td>{% if testimonial.validatedAt %}{{ testimonial.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Deletedat</th>
-                <td>{% if testimonial.deletedAt %}{{ testimonial.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    {% if testimonial.note == 0 %}
+        {% set color = 'testimonial-danger' %}
+    {% elseif testimonial.note == 1 %}
+        {% set color = 'testimonial-warning' %}
+    {% elseif testimonial.note == 2 %}
+        {% set color = 'testimonial-default' %}
+    {% elseif testimonial.note == 3 %}
+        {% set color = 'testimonial-info' %}
+    {% elseif testimonial.note == 4 %}
+        {% set color = 'testimonial-primary' %}
+    {% elseif testimonial.note == 5 %}
+        {% set color = 'testimonial-success' %}
+    {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('testimonial_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('testimonial_edit', { 'id': testimonial.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container" style="padding-top:30px">
+        <div class="row">
+            <div class="col-sm-12 testimonial-title">
+                Pré-visualiser votre avis...
+            </div>
+            <div class="col-sm-12">
+                <div id="tb-testimonial" class="testimonial {{ color }}">
+                    <div class="testimonial-section">
+                        {{ testimonial.comment }}
+                    </div>
+                    <div class="testimonial-desc">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=5&w=100&h=100" alt="" />
+                        <div class="testimonial-writer">
+                            <div class="testimonial-writer-name">Zahed Kamal</div>
+                            <div class="testimonial-writer-designation">Front End Developer</div>
+                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <span class="navbar-right">
+                        &nbsp;
+                        <a href="{{ path('testimonial_publish', { 'id': testimonial.id }) }}" class="btn btn-success">Valider</a>
+                    </span>
+                    <span class="navbar-right">
+                        &nbsp;
+                        <a href="{{ path('testimonial_edit', { 'id': testimonial.id }) }}" class="btn btn-primary">Editer</a>
+                    </span>
+                    <span class="navbar-right">
+                        {{ form_start(delete_form) }}
+                        <input type="submit" value="Supprimer" class="btn btn-danger">
+                        {{ form_end(delete_form) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -2,3 +2,13 @@ c_clean:
     resource: "@CCleanBundle/Controller/"
     type:     annotation
     prefix:   /
+
+login:
+    pattern:   /login
+    defaults:  { _controller: CCleanBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout

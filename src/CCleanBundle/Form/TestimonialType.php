@@ -3,8 +3,11 @@
 namespace CCleanBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 
 class TestimonialType extends AbstractType
 {
@@ -13,7 +16,33 @@ class TestimonialType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('clientId')->add('comment')->add('note')->add('createdAt')->add('updatedAt')->add('validatedAt')->add('deletedAt')        ;
+        $builder
+            ->add('comment', TextareaType::class, array(
+                       'label' => 'Avis',
+                            'attr' => array(
+                            'class' => 'form-control',
+                            'placeholder' => 'Votre avis',
+                            'rows' => '20'
+                            )
+                )
+            )
+            ->add('note', ChoiceType::class, array(
+                'choices'  => array(
+                    '0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                ),
+                'label' => 'Note',
+                'attr' => array(
+                    'class' => 'form-control custom-select',
+                ),
+                // *this line is important*
+                'choices_as_values' => true,
+            ))
+        ;
     }
     
     /**

@@ -127,12 +127,23 @@
                             </ul>
                         </li>
 
+
                         <li class="dropdown">
-                            <a href="{{ path('register') }}" class="animate">Donnez votre avis</a>
+                            {% if is_granted('ROLE_USER') %}
+                                <a href="{{ path('testimonial_new') }}" class="animate">Donnez votre avis</a>
+                            {% else %}
+                                <a href="{{ path('register') }}" class="animate">Donnez votre avis</a>
+                            {% endif %}
                         </li>
 
                         <li class="dropdown">
                             <a href="{{ path('contact') }}" class="animate">Contactez-nous</a>
+                        </li>
+
+                        <li class="dropdown">
+                            {% if is_granted('ROLE_USER') %}
+                                <a href="{{ path('logout') }}" title="Déconnexion"><i class="glyphicon glyphicon-log-out"></i></a>
+                            {% endif %}
                         </li>
 
                     </ul>
@@ -141,6 +152,10 @@
         </nav>
     </section>
         {% block body %}{% endblock %}
+        {% block testimonial %}
+            {{ render(controller('CCleanBundle:Testimonial:index')) }}
+        {% endblock %}
+
         {% block footer %}{% endblock %}
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

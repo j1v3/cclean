@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {#<div style="width: 400px; height: 80px; margin: auto; top: 200px; left: 0; right: 0; position: absolute; border: thin solid #ff0; background: #ffe; color: #2594b2; font-weight: bold; z-index: 9999; padding: 10px;">#}
+        <div class="flash">
+            {{ flashMessage }}
+            <div style="text-align: right">
+                <a href="{{ path('home') }}">Retour</a>
+            </div>
+        </div>
+    {% endfor %}
             <div class="container">
 
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -91,105 +100,4 @@
             </div>
 
         </div>
-
-    <div class="container" style="padding-top:30px">
-        <div class="row">
-            <div class="col-sm-12 testimonial-title">
-                Consultez les avis de nos clients...
-            </div>
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-default">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-primary">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-info">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-success">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-warning">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div id="tb-testimonial" class="testimonial testimonial-danger">
-                    <div class="testimonial-section">
-                        Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

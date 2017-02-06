@@ -5,14 +5,19 @@ namespace CCleanBundle\Entity;
 use CCleanBundle\Traits\Stampable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Tests\Fixtures\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Client
  *
- * @ORM\Table(name="client")
+ * @ORM\Entity
+ * @UniqueEntity(fields="mail", message="Cet email est déjà utilisé !")
+ * @UniqueEntity(fields="username", message="Ce nom d'utilisateur est déjà utilisé")
  * @ORM\Entity(repositoryClass="CCleanBundle\Repository\ClientRepository")
  */
-class Client
+class Client implements UserInterface, \Serializable
 {
     use Stampable;
 
@@ -29,13 +34,6 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255, nullable=true)
-     */
-    private $pseudo;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
@@ -46,6 +44,19 @@ class Client
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
      */
     private $surname;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     */
+    private $company;
 
     /**
      * @var string
@@ -113,16 +124,68 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $mail;
 
     /**
-     * @var string
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * The below length depends on the "algorithm" you use for encoding
+     * the password, but this works well with bcrypt.
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CCleanBundle\Entity\Testimonial", mappedBy="client_id")
+     */
+    private $testimonials;
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid(null, true));
+        if (!$this->getId()) {
+            $this->setCreatedAt(new \DateTime());
+        } else {
+            $this->setUpdatedAt(new \DateTime());
+        }
+        $this->testimonials = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -135,26 +198,49 @@ class Client
     }
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      * @return Client
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get username
      *
      * @return string 
      */
-    public function getPseudo()
+    public function getUsername()
     {
-        return $this->pseudo;
+        return $this->username;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     * @return Client
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**
@@ -449,10 +535,83 @@ class Client
     /**
      * Get password
      *
-     * @return string
+     * @return Client
      */
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set plainpassword
+     *
+     * @param string $password
+     * @return Client
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    /**
+     * Get plainpassword
+     *
+     * @param string $plainpassword
+     * @return Client
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @return null
+     */
+    public function getSalt()
+    {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @return CLient
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 }

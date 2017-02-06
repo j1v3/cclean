@@ -1,51 +1,51 @@
-{% extends 'base.html.twig' %}
+<div class="container" style="padding-top:30px">
+    <div class="row">
+        <div class="col-sm-12 testimonial-title">
+            Consultez les avis de nos clients...
+        </div>
 
-{% block body %}
-    <h1>Testimonials list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Clientid</th>
-                <th>Comment</th>
-                <th>Note</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Validatedat</th>
-                <th>Deletedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for testimonial in testimonials %}
-            <tr>
-                <td><a href="{{ path('testimonial_show', { 'id': testimonial.id }) }}">{{ testimonial.id }}</a></td>
-                <td>{{ testimonial.clientId }}</td>
-                <td>{{ testimonial.comment }}</td>
-                <td>{{ testimonial.note }}</td>
-                <td>{% if testimonial.createdAt %}{{ testimonial.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if testimonial.updatedAt %}{{ testimonial.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if testimonial.validatedAt %}{{ testimonial.validatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if testimonial.deletedAt %}{{ testimonial.deletedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('testimonial_show', { 'id': testimonial.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('testimonial_edit', { 'id': testimonial.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+        {%  for testimonial in testimonials %}
+            {% if testimonial.note == 0 %}
+                {% set color = 'testimonial-danger' %}
+            {% elseif testimonial.note == 1 %}
+                {% set color = 'testimonial-warning' %}
+            {% elseif testimonial.note == 2 %}
+                {% set color = 'testimonial-default' %}
+            {% elseif testimonial.note == 3 %}
+                {% set color = 'testimonial-info' %}
+            {% elseif testimonial.note == 4 %}
+                {% set color = 'testimonial-primary' %}
+            {% elseif testimonial.note == 5 %}
+                {% set color = 'testimonial-success' %}
+            {% endif %}
+        <div class="col-sm-6">
+            <div id="tb-testimonial" class="testimonial {{ color }}">
+                <div class="testimonial-section">
+                    {{ testimonial.comment }}
+                </div>
+                <div style="padding-top: 15px">
+                    {% if testimonial.note == 0 %}
+                    <img class="" src="{{ asset('bundles/cclean/images/zero.png') }}" />
+                    {% else %}
+                        {% for i in 1..testimonial.note %}
+                        <img class="" src="{{ asset('bundles/cclean/images/note.png') }}" />
+                        {% endfor %}
+                    {% endif %}
+                    <div class="testimonial-writer">
+                        {%  if testimonial.name  %}
+                        <div class="testimonial-writer-name">{{ testimonial.surname }} {{ testimonial.name }}</div>
+                        {% else %}
+                        <div class="testimonial-writer-name">{{ testimonial.username }}</div>
+                        {% endif %}
+                        {%  if testimonial.company %}
+                        <a href="#" class="testimonial-writer-company">{{ testimonial.company }}</a>
+                        {%  else %}
+                        <a href="#" class="testimonial-writer-company">Particulier</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('testimonial_new') }}">Create a new testimonial</a>
-        </li>
-    </ul>
-{% endblock %}
+    </div>
+</div>

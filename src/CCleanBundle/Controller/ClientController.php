@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Client controller.
@@ -20,16 +21,17 @@ class ClientController extends Controller
      *
      * @Route("/", name="client_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $clients = $em->getRepository('CCleanBundle:Client')->findAll();
-//
-//        return $this->render('client/index.html.twig', array(
-//            'clients' => $clients,
-//        ));
+        $em = $this->getDoctrine()->getManager();
+
+        $clients = $em->getRepository('CCleanBundle:Client')->findAll();
+
+        return $this->render('client/index.html.twig', array(
+            'clients' => $clients,
+        ));
     }
 
     /**
@@ -45,11 +47,16 @@ class ClientController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($client, $client->getPassword());
+            $client->setPassword($password);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush($client);
 
-            return $this->redirectToRoute('client_show', array('id' => $client->getId()));
+            return $this->redirectToRoute('testimonial_new', array('id' => $client->getId()));
         }
 
         return $this->render('client/new.html.twig', array(
@@ -63,6 +70,7 @@ class ClientController extends Controller
      *
      * @Route("/{id}", name="client_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showAction(Client $client)
     {
@@ -79,6 +87,7 @@ class ClientController extends Controller
      *
      * @Route("/{id}/edit", name="client_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, Client $client)
     {
@@ -104,6 +113,7 @@ class ClientController extends Controller
      *
      * @Route("/{id}", name="client_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, Client $client)
     {

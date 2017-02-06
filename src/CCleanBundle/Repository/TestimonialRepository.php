@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class TestimonialRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
+    public function findTestimonialByActive()
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('CCleanBundle:Client', 'c')
+            ->select('t.comment', 't.note', 'c.name', 'c.surname', 'c.username', 'c.company')
+            ->where('t.isActive = :true')
+            ->setParameter('true', 1)
+            ->groupBy('t.clientId')
+            ->getQuery()
+            ->getResult();
+    }
 }
