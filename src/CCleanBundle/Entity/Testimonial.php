@@ -26,8 +26,8 @@ class Testimonial
 
     /**
      * Many Testimonials have One ClientId
-     * @ORM\Column(name="client_id", type="integer")
-     * @ORM\ManyToOne(targetEntity="CCleanBundle/Entity/Client", inversedBy="testimonials")
+     *
+     * @ORM\ManyToOne(targetEntity="CCleanBundle\Entity\Client", inversedBy="testimonials")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $clientId;

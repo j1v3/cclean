@@ -3,6 +3,7 @@
 namespace CCleanBundle\Controller;
 
 use CCleanBundle\Entity\Testimonial;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -48,10 +49,10 @@ class TestimonialController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $clientId = $this->container->get('security.context')->getToken()->getUser()->getId();
+            $client = $this->container->get('security.context')->getToken()->getUser();
 
             $em = $this->getDoctrine()->getManager();
-            $testimonial->setClientId($clientId);
+            $testimonial->setClientId($client);
             $em->persist($testimonial);
             $em->flush($testimonial);
 
@@ -112,6 +113,7 @@ class TestimonialController extends Controller
 //        var_dump($testimonial[0]->getIsActive());die;
 
             $testimonial[0]->setIsActive(1);
+            $testimonial[0]->setValidatedAt( new DateTime() );
             $em->persist($testimonial[0]);
             $em->flush($testimonial[0]);
 

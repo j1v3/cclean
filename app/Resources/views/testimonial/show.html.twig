@@ -35,11 +35,24 @@
                         {{ testimonial.comment }}
                     </div>
                     <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=5&w=100&h=100" alt="" />
+                        {% if testimonial.note == 0 %}
+                            <img class="" src="{{ asset('bundles/cclean/images/zero.png') }}" />
+                        {% else %}
+                            {% for i in 1..testimonial.note %}
+                                <img class="" src="{{ asset('bundles/cclean/images/note.png') }}" />
+                            {% endfor %}
+                        {% endif %}
                         <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                            <div class="testimonial-writer-designation">Front End Developer</div>
-                            <a href="#" class="testimonial-writer-company">Touch Base Inc</a>
+                            {%  if app.user.name  %}
+                                <div class="testimonial-writer-name">{{ app.user.surname }} {{ app.user.name }}</div>
+                            {% else %}
+                                <div class="testimonial-writer-name">{{ app.user.username }}</div>
+                            {% endif %}
+                            {%  if app.user.company %}
+                                <a href="#" class="testimonial-writer-company">{{ app.user.company }}</a>
+                            {%  else %}
+                                <a href="#" class="testimonial-writer-company">Particulier</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -18,13 +18,17 @@ class TestimonialRepository extends EntityRepository
     public function findTestimonialByActive()
     {
         return $this->createQueryBuilder('t')
-            ->leftJoin('CCleanBundle:Client', 'c')
-            ->select('t.comment', 't.note', 'c.name', 'c.surname', 'c.username', 'c.company')
+            ->join('CCleanBundle:Client', 'c')
+            ->select('t')
+            ->addSelect('c')
+            ->select('t.comment', 't.note', 't.createdAt', 't.updatedAt', 't.isActive', 'c.id', 'c.name', 'c.surname', 'c.username', 'c.company')
             ->where('t.isActive = :true')
+            ->andWhere('t.clientId = c.id')
             ->setParameter('true', 1)
-            ->groupBy('c.username')
+            ->groupBy('t.createdAt')
+            ->orderBy('t.validatedAt', 'DESC')
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 
     public function findTotalNoteByActive()

@@ -3,6 +3,7 @@
 namespace CCleanBundle\Entity;
 
 use CCleanBundle\Traits\Stampable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Tests\Fixtures\Entity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -27,7 +28,7 @@ class Client implements UserInterface, \Serializable
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="CCcleanBundle\Testimonial", mappedBy="client_id")
+     * @ORM\OneToMany(targetEntity="CCcleanBundle\Testimonial", mappedBy="clientId")
      */
     private $id;
 
@@ -150,7 +151,7 @@ class Client implements UserInterface, \Serializable
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="CCleanBundle\Entity\Testimonial", mappedBy="client_id")
+     * @ORM\OneToMany(targetEntity="CCleanBundle\Entity\Testimonial", mappedBy="clientId")
      */
     private $testimonials;
 
@@ -184,13 +185,13 @@ class Client implements UserInterface, \Serializable
         } else {
             $this->setUpdatedAt(new \DateTime());
         }
-        $this->testimonials = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->testimonials = new ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -213,7 +214,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -259,7 +260,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -282,7 +283,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -305,7 +306,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get adress1
      *
-     * @return string 
+     * @return string
      */
     public function getAdress1()
     {
@@ -328,7 +329,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get zip1
      *
-     * @return string 
+     * @return string
      */
     public function getZip1()
     {
@@ -351,7 +352,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get city1
      *
-     * @return string 
+     * @return string
      */
     public function getCity1()
     {
@@ -374,7 +375,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get adress2
      *
-     * @return string 
+     * @return string
      */
     public function getAdress2()
     {
@@ -397,7 +398,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get zip2
      *
-     * @return string 
+     * @return string
      */
     public function getZip2()
     {
@@ -420,7 +421,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get city2
      *
-     * @return string 
+     * @return string
      */
     public function getCity2()
     {
@@ -443,7 +444,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get tel1
      *
-     * @return string 
+     * @return string
      */
     public function getTel1()
     {
@@ -466,7 +467,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get tel2
      *
-     * @return string 
+     * @return string
      */
     public function getTel2()
     {
@@ -489,7 +490,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get fax
      *
-     * @return string 
+     * @return string
      */
     public function getFax()
     {
@@ -512,7 +513,7 @@ class Client implements UserInterface, \Serializable
     /**
      * Get mail
      *
-     * @return string 
+     * @return string
      */
     public function getMail()
     {
@@ -556,7 +557,6 @@ class Client implements UserInterface, \Serializable
     /**
      * Get plainpassword
      *
-     * @param string $plainpassword
      * @return Client
      */
     public function getPlainPassword()
@@ -613,5 +613,74 @@ class Client implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Client
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Client
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Add testimonials
+     *
+     * @param \CCleanBundle\Entity\Testimonial $testimonials
+     * @return Client
+     */
+    public function addTestimonial(\CCleanBundle\Entity\Testimonial $testimonials)
+    {
+        $this->testimonials[] = $testimonials;
+
+        return $this;
+    }
+
+    /**
+     * Remove testimonials
+     *
+     * @param \CCleanBundle\Entity\Testimonial $testimonials
+     */
+    public function removeTestimonial(\CCleanBundle\Entity\Testimonial $testimonials)
+    {
+        $this->testimonials->removeElement($testimonials);
+    }
+
+    /**
+     * Get testimonials
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTestimonials()
+    {
+        return $this->testimonials;
     }
 }
