@@ -48,7 +48,6 @@ class AverageController extends Controller
         $total = 0;
             foreach ($notes as $key => $item) {
                 $total += $item['note'];
-                var_dump($item);
             }
 
         $result = round( $total/$nb, 1, PHP_ROUND_HALF_UP);
@@ -56,8 +55,9 @@ class AverageController extends Controller
         $em->persist($average);
         $em->flush($average);
 
-        return $this->redirectToRoute('average_show', array('id' => $average->getId()));
-
+        return $this->render('average/show.html.twig', array(
+            'id' => $average->getId(),
+            'result' => $average->getScore()));
     }
 
     /**

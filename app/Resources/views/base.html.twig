@@ -45,7 +45,7 @@
     <body>
     <script src="{{ asset('bundles/cclean/js/BSAcpc.js') }}" async></script>
     <section class="section-white">
-        <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999; border-color: #2594b2;">
+        <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999; border-color: #2594b2;">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -149,12 +149,12 @@
                     </ul>
                 </div>
             </div>
+            {% block average %}
+                {{ render(controller('CCleanBundle:Average:new')) }}
+            {% endblock %}
         </nav>
     </section>
-    {#<div id="average_bar" class="avWidgetImage" style="position: fixed; z-index: 5; float: left; margin-top: 80%; margin-left: 10%">#}
-        {#<img style="position: absolute; z-index: 10;" src="{{ asset('bundles/cclean/images/blue_bar.jpg') }}" width="80px" height="40px">#}
-        {#<img style="position: absolute; z-index: 15;" src="{{ asset('bundles/cclean/images/average.png') }}">#}
-    {#</div>#}
+
         {% block body %}{% endblock %}
         {% block footer %}{% endblock %}
         {% block javascripts %}
