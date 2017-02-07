@@ -73,3 +73,30 @@ swiftmailer:
 #    use_controller: '%kernel.debug%'
 #    filters:
 #        cssrewrite: ~
+
+# HWIOAuth
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [main]
+
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           248295492295735
+            client_secret:       fr4nc015
+            options:
+                display: popup #dialog is optimized for popup window
+                auth_type: rerequest # Re-asking for Declined Permissions
+        google:
+            type:                google
+            client_id:           jeremy.vincent60@gmail.com
+            client_secret:       5Ir8eFMcYs4FR08d0cUB
+            scope:               "https://www.googleapis.com/auth/plus.login"
+            options:
+                request_visible_actions: "http://schemas.google.com/AddActivity http://schemas.google.com/CommentActivity"
+        twitter:
+            type:                twitter
+            client_id:           <consumer-key>
+            client_secret:       <consumer-secret>
+            options:
+                include_email: true

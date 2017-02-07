@@ -5,20 +5,23 @@ namespace CCleanBundle\Entity;
 use CCleanBundle\Traits\Stampable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Validator\Tests\Fixtures\Entity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
+
 /**
  * Client
  *
- * @ORM\Entity
+ * @ORM\Table(name="client")
  * @UniqueEntity(fields="mail", message="Cet email est déjà utilisé !")
  * @UniqueEntity(fields="username", message="Ce nom d'utilisateur est déjà utilisé")
  * @ORM\Entity(repositoryClass="CCleanBundle\Repository\ClientRepository")
  */
-class Client implements UserInterface, \Serializable
+class Client extends OAuthUser implements UserInterface, \Serializable
 {
     use Stampable;
 
@@ -31,6 +34,27 @@ class Client implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="CCcleanBundle\Testimonial", mappedBy="clientId")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $googleId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $facebookId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $twitterId;
 
     /**
      * @var string
@@ -50,7 +74,7 @@ class Client implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
@@ -198,6 +222,53 @@ class Client implements UserInterface, \Serializable
         return $this->id;
     }
 
+    /**
+     * @param string $googleId
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * @param string $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->googleId = $facebookId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param string $twitterId
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
     /**
      * Set username
      *

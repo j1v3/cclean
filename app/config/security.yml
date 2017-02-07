@@ -34,7 +34,17 @@ security:
                 target: /
             remember_me:
                 key: %secret%
+            oauth:
+                resource_owners:
+                    facebook:           "/login-oauth/check-facebook"
+                    google:             "/login-oauth/check-google"
+                    twitter:            "/login-oauth/check-twitter"
+                login_path:        /login-oauth
+                use_forward:       false
+                failure_path:      /login-oauth
 
+                oauth_user_provider:
+                    service: cclean_user.oauth_user_provider
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
 
