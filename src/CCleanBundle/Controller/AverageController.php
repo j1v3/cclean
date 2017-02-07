@@ -50,7 +50,7 @@ class AverageController extends Controller
                 $total += $item['note'];
             }
 
-        $result = round( $total/$nb, 1, PHP_ROUND_HALF_UP);
+        $result = $nb > 0 ? round($total / $nb, 1, PHP_ROUND_HALF_UP) : 0;
         $average->setScore($result);
         $em->persist($average);
         $em->flush($average);
