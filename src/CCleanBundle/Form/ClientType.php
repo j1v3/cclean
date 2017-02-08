@@ -5,12 +5,10 @@ namespace CCleanBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use CCleanBundle\Entity\Client;
 
 class ClientType extends AbstractType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -60,8 +58,8 @@ class ClientType extends AbstractType
                     'placeholder' => 'Entrez le nom de votre entreprise'
                 )
             ))
-            ->add('password', RepeatedType::class, array(
-                'type' => PasswordType::class,
+            ->add('password', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+                'type' => 'Symfony\Component\Form\Extension\Core\Type\PasswordType',
                 'label' => 'Mot de passe',
                 'invalid_message' => 'Les mots de passes doivent correspondre !',
                 'options' => array(
@@ -83,7 +81,7 @@ class ClientType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Client::class,
+            'data_class' => 'CCleanBundle\Entity\Client',
         ));
     }
 
