@@ -184,7 +184,9 @@ class TestimonialController extends Controller
             $em->flush($testimonial);
         }
 
-        return $this->redirectToRoute('testimonial_index');
+        $this->get('session')->getFlashBag()->Add('notice', 'Cet avis est maintenant supprimé...');
+
+        return $this->redirectToRoute('home');
     }
 
     /**
