@@ -17,7 +17,7 @@ class TestimonialType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', TextareaType::class, array(
+            ->add('comment', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array(
                        'label' => 'Avis',
                             'attr' => array(
                             'class' => 'form-control',
@@ -26,7 +26,7 @@ class TestimonialType extends AbstractType
                             )
                 )
             )
-            ->add('note', ChoiceType::class, array(
+            ->add('note', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
                     '0' => '0',
                     '1' => '1',
