@@ -30,12 +30,10 @@
 
                     {{ form_errors(form) }}
                     {{ form_widget(form._token) }}
-
                     <div class="form-group">
                         <div class="cols-sm-10">
                             <label for="name" class="cols-sm-2 control-label" style="display: inline">{{ form_label(form.name) }}</label>
                             <div class="input-group">
-
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 {{ form_widget(form.name) }}
                             </div>

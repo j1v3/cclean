@@ -38,8 +38,7 @@ class ContactController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Demande de contact depuis www.cclean-nettoyage.fr')
                     ->setFrom($mailFrom)
-//                    ->setTo('cclean.bectard@gmail.com')
-                    ->setTo($mailFrom)
+                    ->setTo('contact@cclean-nettoyage.fr')
                     ->setBody($this->renderView('contact/contactEmail.txt.twig',
                         array('contact' => $contact)));
 

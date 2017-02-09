@@ -80,8 +80,7 @@ class TestimonialController extends Controller
         $message = \Swift_Message::newInstance()
             ->setSubject('Vous avez un nouvel avis sur www.cclean-nettoyage.fr')
             ->setFrom($mailFrom)
-//                    ->setTo('cclean.bectard@gmail.com')
-            ->setTo($mailFrom)
+            ->setTo('contact@cclean-nettoyage.fr')
             ->setBody($this->renderView('testimonial/testimonialEmail.html.twig',
                 array(
                     'testimonial' => $testimonial,
@@ -109,8 +108,6 @@ class TestimonialController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $testimonial = $em->getRepository('CCleanBundle:Testimonial')->findBy(array('id' => $id));
-//        echo "<pre>";
-//        var_dump($testimonial[0]->getIsActive());die;
 
             $testimonial[0]->setIsActive(1);
             $testimonial[0]->setValidatedAt( new DateTime() );
