@@ -14,4 +14,11 @@ class DefaultController extends Controller
         return $this->render('CCleanBundle:Default:index.html.twig');
     }
 
+    /**
+     * @Route("/sitemap", name="sitemap")
+     */
+    public function sitemapAction()
+    {
+        return $this->render('CCleanBundle:Default:sitemap.html.twig');
+    }
 }
