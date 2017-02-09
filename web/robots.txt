@@ -1,5 +1,4 @@
-# www.robotstxt.org/
-# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
-
+# Référencement webophil.net
+# Fichier robots.txt pour le site : http://www.cclean-nettoyage.fr
 User-agent: *
-Disallow:
+Sitemap: http://www.cclean-nettoyage.fr/sitemap
