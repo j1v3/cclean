@@ -38,7 +38,13 @@
                         <div class="testimonial-writer-name">{{ testimonial.username }}</div>
                         {% endif %}
                         {%  if testimonial.company %}
-                        <a href="#" class="testimonial-writer-company">{{ testimonial.company }}</a>
+                            {#{{ app.user.mail }}#}
+                            {#&#123;&#35;{% if app.user.email %}&#35;&#125;#}
+                                {#&#123;&#35;set mail = app.user.mail&#35;&#125;#}
+                            {#&#123;&#35;{% else %}&#35;&#125;#}
+                                {#&#123;&#35;set mail = '#'&#35;&#125;#}
+                            {#&#123;&#35;{% endif %}&#35;&#125;#}
+                            <a href="}#" class="testimonial-writer-company">{{ testimonial.company }}</a>
                         {%  else %}
                         <a href="#" class="testimonial-writer-company">Particulier</a>
                         {% endif %}
