@@ -1,4 +1,4 @@
-my_project
+CClean
 ==========
 
-A Symfony project created on February 2, 2017, 11:34 am.
+A Symfony 2.8 project created on February 2, 2017.
